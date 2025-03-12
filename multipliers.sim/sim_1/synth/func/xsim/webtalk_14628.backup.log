@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Webtalk v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Feb 24 16:23:15 2025
+# Process ID: 14628
+# Current directory: D:/Mtech/Vivado/multipliers/multipliers.sim/sim_1/synth/func/xsim
+# Command line: wbtcv.exe -mode batch -source D:/Mtech/Vivado/multipliers/multipliers.sim/sim_1/synth/func/xsim/xsim.dir/Shift_multiplier_behavioural_TB_func_synth/webtalk/xsim_webtalk.tcl -notrace
+# Log file: D:/Mtech/Vivado/multipliers/multipliers.sim/sim_1/synth/func/xsim/webtalk.log
+# Journal file: D:/Mtech/Vivado/multipliers/multipliers.sim/sim_1/synth/func/xsim\webtalk.jou
+#-----------------------------------------------------------
+source D:/Mtech/Vivado/multipliers/multipliers.sim/sim_1/synth/func/xsim/xsim.dir/Shift_multiplier_behavioural_TB_func_synth/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Mon Feb 24 16:23:17 2025...

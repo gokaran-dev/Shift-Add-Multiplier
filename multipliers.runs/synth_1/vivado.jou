@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Mar 11 21:10:47 2025
+# Process ID: 14332
+# Current directory: D:/Mtech/Vivado/multipliers/multipliers.runs/synth_1
+# Command line: vivado.exe -log Shift_multipliers.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Shift_multipliers.tcl
+# Log file: D:/Mtech/Vivado/multipliers/multipliers.runs/synth_1/Shift_multipliers.vds
+# Journal file: D:/Mtech/Vivado/multipliers/multipliers.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source Shift_multipliers.tcl -notrace

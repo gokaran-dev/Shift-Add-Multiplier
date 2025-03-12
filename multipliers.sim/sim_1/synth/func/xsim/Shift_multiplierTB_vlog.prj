@@ -1,0 +1,7 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"Shift_multiplierTB_func_synth.v" \
+"../../../../../multipliers.srcs/sim_1/new/Shift_multiplierTB.v" \
+
+# Do not sort compile order
+nosort
