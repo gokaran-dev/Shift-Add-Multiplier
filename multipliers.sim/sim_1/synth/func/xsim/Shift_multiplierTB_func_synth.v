@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Tue Mar 11 20:58:06 2025
+// Date        : Tue Mar 18 23:33:11 2025
 // Host        : DESKTOP-IJF0GJG running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode funcsim -nolib -force -file
 //               D:/Mtech/Vivado/multipliers/multipliers.sim/sim_1/synth/func/xsim/Shift_multiplierTB_func_synth.v
@@ -17,12 +17,10 @@ module Shift_multipliers
    (multi,
     clk,
     multiplier,
-    count,
     product);
   input [7:0]multi;
   input clk;
   input [7:0]multiplier;
-  output [3:0]count;
   output [15:0]product;
 
   wire \CLA/CLA1/CLA1/temp1 ;
@@ -32,8 +30,6 @@ module Shift_multipliers
   wire clk_IBUF_BUFG;
   wire [3:0]count;
   wire \count[3]_i_1_n_0 ;
-  wire [3:0]count_OBUF;
-  wire d_input;
   wire ff0_i_1_n_0;
   wire ff15_n_0;
   wire ff1_i_1_n_0;
@@ -99,6 +95,7 @@ module Shift_multipliers
   wire shift1_7;
   wire shift1_8;
   wire shift1_9;
+  wire shift_enable;
   wire [15:2]sum;
 
   BUFG clk_IBUF_BUFG_inst
@@ -109,54 +106,42 @@ module Shift_multipliers
         .O(clk_IBUF));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h00FB)) 
+    .INIT(16'h5545)) 
     \count[0]_i_1 
-       (.I0(count_OBUF[2]),
-        .I1(count_OBUF[3]),
-        .I2(count_OBUF[1]),
-        .I3(count_OBUF[0]),
+       (.I0(count[0]),
+        .I1(count[2]),
+        .I2(count[3]),
+        .I3(count[1]),
         .O(p_1_in[0]));
   LUT2 #(
     .INIT(4'h6)) 
     \count[1]_i_1 
-       (.I0(count_OBUF[1]),
-        .I1(count_OBUF[0]),
+       (.I0(count[0]),
+        .I1(count[1]),
         .O(p_1_in[1]));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \count[2]_i_1 
-       (.I0(count_OBUF[2]),
-        .I1(count_OBUF[0]),
-        .I2(count_OBUF[1]),
+       (.I0(count[2]),
+        .I1(count[1]),
+        .I2(count[0]),
         .O(p_1_in[2]));
   LUT4 #(
-    .INIT(16'h1337)) 
+    .INIT(16'h071F)) 
     \count[3]_i_1 
-       (.I0(count_OBUF[2]),
-        .I1(count_OBUF[3]),
-        .I2(count_OBUF[1]),
-        .I3(count_OBUF[0]),
+       (.I0(count[0]),
+        .I1(count[2]),
+        .I2(count[3]),
+        .I3(count[1]),
         .O(\count[3]_i_1_n_0 ));
-  OBUF \count_OBUF[0]_inst 
-       (.I(count_OBUF[0]),
-        .O(count[0]));
-  OBUF \count_OBUF[1]_inst 
-       (.I(count_OBUF[1]),
-        .O(count[1]));
-  OBUF \count_OBUF[2]_inst 
-       (.I(count_OBUF[2]),
-        .O(count[2]));
-  OBUF \count_OBUF[3]_inst 
-       (.I(count_OBUF[3]),
-        .O(count[3]));
   FDRE #(
     .INIT(1'b0)) 
     \count_reg[0] 
        (.C(clk_IBUF_BUFG),
         .CE(\count[3]_i_1_n_0 ),
         .D(p_1_in[0]),
-        .Q(count_OBUF[0]),
+        .Q(count[0]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -164,7 +149,7 @@ module Shift_multipliers
        (.C(clk_IBUF_BUFG),
         .CE(\count[3]_i_1_n_0 ),
         .D(p_1_in[1]),
-        .Q(count_OBUF[1]),
+        .Q(count[1]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -172,7 +157,7 @@ module Shift_multipliers
        (.C(clk_IBUF_BUFG),
         .CE(\count[3]_i_1_n_0 ),
         .D(p_1_in[2]),
-        .Q(count_OBUF[2]),
+        .Q(count[2]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b1)) 
@@ -180,15 +165,7 @@ module Shift_multipliers
        (.C(clk_IBUF_BUFG),
         .CE(\count[3]_i_1_n_0 ),
         .D(1'b0),
-        .Q(count_OBUF[3]),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b1)) 
-    d_input_reg
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .D(1'b0),
-        .Q(d_input),
+        .Q(count[3]),
         .R(1'b0));
   (* BOX_TYPE = "PRIMITIVE" *) 
   FDRE #(
@@ -207,7 +184,7 @@ module Shift_multipliers
     .INIT(4'h8)) 
     ff0_i_1
        (.I0(multi_IBUF[0]),
-        .I1(d_input),
+        .I1(shift_enable),
         .O(ff0_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
   FDRE #(
@@ -298,7 +275,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff1_i_1
        (.I0(multi_IBUF[1]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_0),
         .O(ff1_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -318,7 +295,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff2_i_1
        (.I0(multi_IBUF[2]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_1),
         .O(ff2_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -338,7 +315,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff3_i_1
        (.I0(multi_IBUF[3]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_2),
         .O(ff3_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -358,7 +335,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff4_i_1
        (.I0(multi_IBUF[4]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_3),
         .O(ff4_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -378,7 +355,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff5_i_1
        (.I0(multi_IBUF[5]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_4),
         .O(ff5_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -398,7 +375,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff6_i_1
        (.I0(multi_IBUF[6]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_5),
         .O(ff6_i_1_n_0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -418,7 +395,7 @@ module Shift_multipliers
     .INIT(8'hB8)) 
     ff7_i_1
        (.I0(multi_IBUF[7]),
-        .I1(d_input),
+        .I1(shift_enable),
         .I2(shift1_6),
         .O(D0));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -537,7 +514,7 @@ module Shift_multipliers
     \product[11]_i_10 
        (.I0(shift1_2),
         .I1(\product[14]_i_3_n_0 ),
-        .I2(count_OBUF[2]),
+        .I2(count[2]),
         .I3(\product[14]_i_4_n_0 ),
         .O(\product[11]_i_10_n_0 ));
   LUT5 #(
@@ -545,7 +522,7 @@ module Shift_multipliers
     \product[11]_i_11 
        (.I0(product_OBUF[3]),
         .I1(\product[14]_i_4_n_0 ),
-        .I2(count_OBUF[2]),
+        .I2(count[2]),
         .I3(\product[14]_i_3_n_0 ),
         .I4(shift1_3),
         .O(\product[11]_i_11_n_0 ));
@@ -617,7 +594,7 @@ module Shift_multipliers
     \product[11]_i_9 
        (.I0(shift1_1),
         .I1(\product[14]_i_3_n_0 ),
-        .I2(count_OBUF[2]),
+        .I2(count[2]),
         .I3(\product[14]_i_4_n_0 ),
         .O(\product[11]_i_9_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
@@ -664,9 +641,9 @@ module Shift_multipliers
     \product[14]_i_3 
        (.I0(multiplier_IBUF[3]),
         .I1(multiplier_IBUF[2]),
-        .I2(count_OBUF[1]),
+        .I2(count[1]),
         .I3(multiplier_IBUF[1]),
-        .I4(count_OBUF[0]),
+        .I4(count[0]),
         .I5(multiplier_IBUF[0]),
         .O(\product[14]_i_3_n_0 ));
   LUT6 #(
@@ -674,18 +651,18 @@ module Shift_multipliers
     \product[14]_i_4 
        (.I0(multiplier_IBUF[7]),
         .I1(multiplier_IBUF[6]),
-        .I2(count_OBUF[1]),
+        .I2(count[1]),
         .I3(multiplier_IBUF[5]),
-        .I4(count_OBUF[0]),
+        .I4(count[0]),
         .I5(multiplier_IBUF[4]),
         .O(\product[14]_i_4_n_0 ));
   LUT4 #(
     .INIT(16'h007F)) 
     \product[15]_i_1 
-       (.I0(count_OBUF[1]),
-        .I1(count_OBUF[0]),
-        .I2(count_OBUF[2]),
-        .I3(count_OBUF[3]),
+       (.I0(count[0]),
+        .I1(count[1]),
+        .I2(count[2]),
+        .I3(count[3]),
         .O(p_0_in));
   (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
@@ -896,7 +873,7 @@ module Shift_multipliers
     \product[6]_i_4 
        (.I0(product_OBUF[0]),
         .I1(\product[14]_i_4_n_0 ),
-        .I2(count_OBUF[2]),
+        .I2(count[2]),
         .I3(\product[14]_i_3_n_0 ),
         .I4(shift1_0),
         .O(\product[6]_i_4_n_0 ));
@@ -1038,7 +1015,7 @@ module Shift_multipliers
        (.I0(\product[14]_i_3_n_0 ),
         .I1(\product[14]_i_4_n_0 ),
         .O(\product_reg[14]_i_2_n_0 ),
-        .S(count_OBUF[2]));
+        .S(count[2]));
   FDRE #(
     .INIT(1'b0)) 
     \product_reg[15] 
@@ -1118,6 +1095,14 @@ module Shift_multipliers
         .CE(p_0_in),
         .D(sum[9]),
         .Q(product_OBUF[9]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b1)) 
+    shift_enable_reg
+       (.C(clk_IBUF_BUFG),
+        .CE(1'b1),
+        .D(1'b0),
+        .Q(shift_enable),
         .R(1'b0));
 endmodule
 `ifndef GLBL

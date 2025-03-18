@@ -12,7 +12,7 @@ module Shift_multipliers(
     wire [15:0]shift1;
     reg  shift_enable=1;
     wire [15:0] sum;
-    reg count=4'b1000;
+    reg [3:0]count=4'b1000;
         //shift registers for shifting multiplicand
         FDRE #(.INIT(1'b0)) ff0(.D(shift_enable?multi[0]:1'b0),.Q(shift1[0]),.C(clk),.R(1'b0),.CE(1'b1));
         FDRE #(.INIT(1'b0)) ff1(.D(shift_enable?multi[1]:shift1[0]),.Q(shift1[1]),.C(clk),.R(1'b0),.CE(1'b1));

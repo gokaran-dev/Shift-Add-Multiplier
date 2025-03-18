@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1741707645">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1742320892">
   <File Type="PA-TCL" Name="Shift_multipliers.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="Shift_multipliers_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Shift_multipliers_reports.tcl"/>
@@ -34,14 +34,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/Shift_multipliers.v">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/Shift_multiplier_behavioural.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

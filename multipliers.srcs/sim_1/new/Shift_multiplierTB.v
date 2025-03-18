@@ -13,8 +13,8 @@ module Shift_multiplierTB();
                 clk=0;
                 multi=8'b0;
                 multiplier=8'b0;
-                multi=8'b10110011;
-                multiplier=8'b01100100;
+                multi=8'b00001011;
+                multiplier=8'b000001110;
             end
             
         always
